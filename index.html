@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <title>HTML DOM</title>
+</head>
+<body>
+    <div class="main">
+        <form action="" method="POST" class="form" id="form-1">
+            <h3 class="heading">Validation Form</h3>
+            <p class="desc">Welcome to Bad Habbit</p>
+
+            <div class="spacer"></div>
+
+            <div class="form-group">
+                <label for="fullname" class="form-label">Fullname</label>
+                <input class="form-control" type="text" id="fullname" name="fullname" placeholder="VD: Lê Duy Quân">
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input class="form-control" type="text" id="email" name="email" placeholder="VD: quanle13.ql57@gmail.com">
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="form-label">Password</label>
+                <input class="form-control" type="password" id="password" name="password" placeholder="Enter password">
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="password_confirmation" class="form-label">Re-Enter Password</label>
+                <input class="form-control" type="password" id="password_confirmation" name="password_confirmation" placeholder="Re-Enter Password">
+                <span class="form-message"></span>
+            </div>
+
+            <!-- <div class="form-group">
+                <label for="avatar" class="form-label">Avatar</label>
+                <input class="form-control" type="file" id="avatar" name="avatar" ">
+                <span class="form-message"></span>
+            </div> -->
+
+            <!-- <div class="form-group">
+                <label for="province" class="form-label">Province/City</label>
+                <select class="form-control" id="province" name="province">
+                    <option value="">-- Select Province/City --</option>
+                    <option value="hni">Ha Noi Capital</option>
+                    <option value="hcm">Ho Chi Minh City</option>
+                </select>
+                <span class="form-message"></span>
+            </div> -->
+
+            <!-- <div class="form-group">
+                <label for="password_confirmation" class="form-label">Gender</label>
+                <div>
+                    <input class="form-control" type="checkbox" value="male" name="gender">
+                    Male
+                </div>
+                <div>
+                    <input class="form-control" type="checkbox" value="female" name="gender">
+                    Female
+                </div>
+                <div>
+                    <input class="form-control" type="checkbox" value="other" name="gender">
+                    Other
+                </div>
+                <span class="form-message"></span>
+            </div> -->
+
+            <button class="form-submit">Register</button>
+
+        </form>
+        
+
+        <!-- <form action="" method="POST" class="form" id="form-2">
+            <h3 class="heading">Sign-In Form</h3>
+            <p class="desc">Welcome to Bad Habbit</p>
+
+            <div class="spacer"></div>
+
+            <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input class="form-control" type="text" id="email" name="email" placeholder="VD: quanle13.ql57@gmail.com">
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="form-label">Password</label>
+                <input class="form-control" type="password" id="password" name="password" placeholder="Enter password">
+                <span class="form-message"></span>
+            </div>
+
+
+            <button class="form-submit">Sign in</button>
+
+        </form> -->
+    </div>
+
+    <script src="./validator.js"></script>
+    <script>
+
+        validator({
+            form: '#form-1',
+            formGroupSelector: '.form-group',
+            errorSelector: '.form-message',
+            rules: [
+                validator.isRequired('#fullname', 'Vui lòng nhập họ tên!'),
+                validator.isRequired('#email', 'Vui lòng nhập email!'),
+                validator.isEmail('#email', 'Đây phải là email!'),
+                validator.isRequired('#password'),
+                validator.minLength('#password', 6),
+                validator.isRequired('#password_confirmation'),
+                validator.isConfirmed('#password_confirmation', function() {
+                    return document.querySelector('#form-1 #password').value;
+                }, 'Password not exact!'),
+                // validator.isRequired('input[name="gender"]'),
+                // validator.isRequired('#province'),
+                // validator.isRequired('#avatar'),
+            ],
+            onSubmit: function(data) {
+                console.log(data);
+            }
+        });
+
+        // validator({
+        //     form: '#form-2',
+        //     formGroupSelector: '.form-group',
+        //     errorSelector: '.form-message',
+        //     rules: [
+        //         validator.isRequired('#email', 'Vui lòng nhập email!'),
+        //         validator.isEmail('#email', 'Đây phải là email!'),
+        //         validator.isRequired('#password'),
+        //         validator.minLength('#password', 6),
+        //     ],
+        //     onSubmit: function(data) {
+        //         console.log(data);
+        //     }
+        // });
+    </script>
+</body>
+</html>
